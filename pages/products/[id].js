@@ -11,14 +11,12 @@ export default function Product() {
 
   const getProduct = async (targetId) => {
     const res = await axios.get(`/products/${targetId}`);
-    console.log(res);
     const nextProduct = res.data;
     setProduct(nextProduct);
   };
 
   const getSizeReviews = async (targetId) => {
     const res = await axios.get(`/size_reviews/?product_id=${targetId}`);
-    console.log(res);
     const nextSizeReviews = res.data.results ?? [];
     setSizeReviews(nextSizeReviews);
   };

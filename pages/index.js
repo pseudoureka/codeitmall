@@ -1,20 +1,27 @@
+import ProductList from "@/components/ProductList";
 import SearchForm from "@/components/SearchForm";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "@/lib/axios";
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
+  const getProducts = async () => {
+    const res = await axios.get(`/products`);
+    console.log(res);
+    const nextProducts = res.data.results;
+    setProducts(nextProducts);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <>
       <h1>Codeitmall</h1>
       <SearchForm />
-      <Link href={"/products/1"}>
-        <p>첫번째 상품</p>
-      </Link>
-      <Link href={"/products/2"}>
-        <p>두번째 상품</p>
-      </Link>
-      <Link href={"/products/3"}>
-        <p>세번째 상품</p>
-      </Link>
+      <ProductList products={products} />
     </>
   );
 }
