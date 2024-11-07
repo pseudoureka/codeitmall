@@ -1,3 +1,10 @@
+import SearchForm from "@/components/SearchForm";
+
 export default function Home() {
-  return <>안녕 next.js!</>;
+  return (
+    <>
+      <h1>Codeitmall</h1>
+      <SearchForm />
+    </>
+  );
 }
