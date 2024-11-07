@@ -8,7 +8,7 @@ export default function Search() {
   return (
     <>
       <h1>Search 페이지</h1>
-      <SearchForm />
+      <SearchForm initialValue={q} />
       <h2>{q} 검색 결과</h2>
     </>
   );

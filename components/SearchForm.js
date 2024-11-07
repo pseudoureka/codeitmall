@@ -1,9 +1,9 @@
 const { useRouter } = require("next/router");
 const { useState } = require("react");
 
-function SearchForm() {
+function SearchForm({ initialValue = "" }) {
   const router = useRouter();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initialValue);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -11,6 +11,10 @@ function SearchForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!value) {
+      router.push("/");
+      return;
+    }
     router.push(`/search?q=${value}`);
   };
 
