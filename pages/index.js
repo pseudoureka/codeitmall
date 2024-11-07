@@ -1,7 +1,7 @@
 import ProductList from "@/components/ProductList";
 import SearchForm from "@/components/SearchForm";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "@/lib/axios";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
