@@ -1,8 +1,9 @@
-import ProductList from "@/components/ProductList";
-import SearchForm from "@/components/SearchForm";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import axios from "@/lib/axios";
+import ProductList from '@/components/ProductList';
+import SearchForm from '@/components/SearchForm';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import axios from '@/lib/axios';
+import Head from 'next/head';
 
 export default function Search() {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,9 @@ export default function Search() {
 
   return (
     <>
+      <Head>
+        <title>{q} 검색 페이지 - codeitmall</title>
+      </Head>
       <h1>Search 페이지</h1>
       <SearchForm initialValue={q} />
       <h2>{q} 검색 결과</h2>
