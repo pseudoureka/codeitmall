@@ -5,21 +5,20 @@ import { useEffect, useState } from 'react';
 import axios from '@/lib/axios';
 import Head from 'next/head';
 
-export default function Search() {
-  const [products, setProducts] = useState([]);
-  const router = useRouter();
-  const { q } = router.query;
+export async function getServerSideProps(context) {
+  const q = context.query['q'];
 
-  const getProducts = async (query) => {
-    const res = await axios.get(`/products/?q=${query}`);
-    const nextProducts = res.data.results;
-    setProducts(nextProducts);
+  const res = await axios.get(`/products/?q=${q}`);
+  const products = res.data.results ?? [];
+
+  return {
+    props: {
+      products,
+    },
   };
+}
 
-  useEffect(() => {
-    getProducts(q);
-  }, [q]);
-
+export default function Search({ products }) {
   return (
     <>
       <Head>
