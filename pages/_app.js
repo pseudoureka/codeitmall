@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>Codeitmall</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
         <Component {...pageProps} />
