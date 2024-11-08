@@ -1,22 +1,19 @@
-import ProductList from "@/components/ProductList";
-import SearchForm from "@/components/SearchForm";
-import { useEffect, useState } from "react";
-import axios from "@/lib/axios";
+import ProductList from '@/components/ProductList';
+import SearchForm from '@/components/SearchForm';
+import axios from '@/lib/axios';
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+export async function getStaticProps() {
+  const res = await axios.get(`/products`);
+  const products = res.data.results;
 
-  const getProducts = async () => {
-    const res = await axios.get(`/products`);
-    console.log(res);
-    const nextProducts = res.data.results;
-    setProducts(nextProducts);
+  return {
+    props: {
+      products,
+    },
   };
+}
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+export default function Home({ products }) {
   return (
     <>
       <h1>Codeitmall</h1>
