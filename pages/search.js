@@ -1,7 +1,5 @@
 import ProductList from '@/components/ProductList';
 import SearchForm from '@/components/SearchForm';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import axios from '@/lib/axios';
 import Head from 'next/head';
 
@@ -14,11 +12,12 @@ export async function getServerSideProps(context) {
   return {
     props: {
       products,
+      q,
     },
   };
 }
 
-export default function Search({ products }) {
+export default function Search({ q, products }) {
   return (
     <>
       <Head>
